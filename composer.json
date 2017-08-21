@@ -1,0 +1,19 @@
+{
+    "name": "daryl/tetsuwan",
+    "require-dev": {
+        "phpunit/phpunit": "^6.3"
+    },
+    "license": "Apache 2.0",
+    "authors": [
+        {
+            "name": "daryl",
+            "email": "daryl.moe@outlook.coom"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tetsuwan\\": "src"
+        }
+    },
+    "require": {}
+}
