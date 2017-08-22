@@ -26,6 +26,11 @@ class Router implements RouterContract
 
     public function get(string $uri, $action)
     {
+        $this->createRoute($uri, $action, 'get');
+    }
+
+    protected function createRoute(string $uri, $action, string $method)
+    {
         /** @var \Tetsuwan\Contracts\Routing\Route $route */
         $route = $this->app->make(\Tetsuwan\Contracts\Routing\Route::class);
 
@@ -37,7 +42,7 @@ class Router implements RouterContract
             $route->setAction($action);
         }
 
-        $this->routes['get'][$uri] = $route;
+        $this->routes[$method][$uri] = $route;
     }
 
     protected function parseAction($action)

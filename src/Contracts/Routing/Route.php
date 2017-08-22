@@ -11,5 +11,9 @@ namespace Tetsuwan\Contracts\Routing;
 
 interface Route
 {
+    public function setAction($action);
 
+    public function getAction();
+
+    public function setController($controller);
 }
