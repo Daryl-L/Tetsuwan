@@ -12,7 +12,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "Tetsuwan\\": "src"
+            "Tetsuwan\\": "src",
+            "App\\": "tests"
         }
     },
     "require": {}

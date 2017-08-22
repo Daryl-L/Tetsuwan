@@ -14,21 +14,36 @@ class Route implements RouteContract
 {
     protected $action;
 
-    public function setAction(callable $action)
+    protected $controller;
+
+    public function setAction($action)
     {
-        if (is_callable($action)) {
-            $this->action = $action;
-        }
+        $this->action = $action;
     }
 
     public function getAction()
     {
-        return $this->action;
+        if (is_callable($this->action)) {
+            return $this->action;
+        } else {
+            $controllerClass = new \ReflectionClass($this->controller);
+            return [$controllerClass->newInstance(), $this->action];
+        }
+    }
+
+    public function setController($controller)
+    {
+        $this->controller = $controller;
     }
 
     public function __invoke()
     {
         $args = func_get_args();
-        return call_user_func_array($this->action, $args);
+        if (is_callable($this->action)) {
+            return call_user_func_array($this->action, $args);
+        } else {
+            $controllerClass = new \ReflectionClass($this->controller);
+            return call_user_func_array([$controllerClass->newInstance(), $this->action], $args);
+        }
     }
 }

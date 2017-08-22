@@ -52,7 +52,11 @@ class Container implements ContainerContract, \ArrayAccess
         $shared = $this->bindings[$abstract]['shared'];
 
         if (is_callable($concrete)) {
-            return call_user_func($concrete, self::$instance);
+            $instance = call_user_func($concrete, self::$instance);
+            if ($shared) {
+                $this->instances[$abstract] = $instance;
+            }
+            return $instance;
         }
 
         $class = new \ReflectionClass($concrete);

@@ -29,6 +29,5 @@ class Application extends Container
 
     protected function initSingleton()
     {
-        $this->singleton(\Tetsuwan\Contracts\Routing\Router::class, \Tetsuwan\Routing\Router::class);
     }
 }

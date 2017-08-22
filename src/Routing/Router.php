@@ -17,6 +17,8 @@ class Router implements RouterContract
 
     protected $routes = [];
 
+    protected $namespace;
+
     public function __construct()
     {
         $this->app = Container::getInstance();
@@ -24,13 +26,31 @@ class Router implements RouterContract
 
     public function get(string $uri, $action)
     {
+        /** @var \Tetsuwan\Contracts\Routing\Route $route */
         $route = $this->app->make(\Tetsuwan\Contracts\Routing\Route::class);
 
         if ($action instanceof \Closure) {
             $route->setAction($action);
+        } elseif (is_string($action)) {
+            [$controller, $action] = $this->parseAction($action);
+            $route->setController($controller);
+            $route->setAction($action);
         }
 
         $this->routes['get'][$uri] = $route;
+    }
+
+    protected function parseAction($action)
+    {
+        [$controller, $action] = explode('@', $action);
+        $controller = $this->namespace . ltrim($controller, '\\');
+
+        return [$controller, $action];
+    }
+
+    public function setNamespace($namespace)
+    {
+        $this->namespace = $namespace;
     }
 
     public function getRoute($method, $uri)

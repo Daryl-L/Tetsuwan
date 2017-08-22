@@ -24,8 +24,17 @@ $app->bind(
 
 $app->bind(
     \Tetsuwan\Contracts\Http\Kernel::class,
-    \Tetsuwan\Http\Kernel::class
+    \App\Kernel::class
 );
+
+$app->singleton(\Tetsuwan\Contracts\Routing\Router::class, function () {
+    $namespace = 'App\\Controller\\';
+    $router = new \Tetsuwan\Routing\Router;
+    $router->setNamespace($namespace);
+
+    return $router;
+});
+
 
 //$app->singleton(
 //    \Tetsuwan\Contracts\Routing\Router::class,
@@ -37,5 +46,7 @@ $router = $app->make(\Tetsuwan\Contracts\Routing\Router::class);
 $router->get('/test', function () {
     return 2333;
 });
+
+$router->get('/test/controller', 'TestController@test');
 
 $server->start();
