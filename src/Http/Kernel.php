@@ -42,6 +42,8 @@ class Kernel implements KernelContract
 
         $route = $router->getRoute('get', $uri);
 
+        $route->setRequest($request);
+
         $this->response->setRoute($route);
 
         return $this->response;

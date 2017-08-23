@@ -8,6 +8,7 @@
 
 namespace Tetsuwan\Routing;
 
+use Tetsuwan\Contracts\Http\Request;
 use Tetsuwan\Contracts\Routing\Route as RouteContract;
 
 class Route implements RouteContract
@@ -15,6 +16,13 @@ class Route implements RouteContract
     protected $action;
 
     protected $controller;
+
+    protected $request;
+
+    public function setRequest(Request $request)
+    {
+        $this->request = $request;
+    }
 
     public function setAction($action)
     {
@@ -43,7 +51,18 @@ class Route implements RouteContract
             return call_user_func_array($this->action, $args);
         } else {
             $controllerClass = new \ReflectionClass($this->controller);
-            return call_user_func_array([$controllerClass->newInstance(), $this->action], $args);
+            $method = $controllerClass->getMethod($this->action);
+            $parameters = $method->getParameters();
+            $parameterStack = [];
+            foreach ($parameters as $parameter) {
+                if (Request::class == $parameter->getClass()->name) {
+                    $parameterStack[] = $this->request;
+                    continue;
+                }
+
+                $parameterStack[] = $this->app->mane($parameter->getClass());
+            }
+            return call_user_func_array([$controllerClass->newInstance(), $this->action], $parameterStack);
         }
     }
 }
