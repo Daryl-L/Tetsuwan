@@ -9,10 +9,12 @@
 namespace App\Controller;
 
 
+use Tetsuwan\Contracts\Http\Request;
+
 class TestController
 {
-    public function test()
+    public function test(Request $request)
     {
-        return 'test';
+        return $request->getUri();
     }
 }
