@@ -8,8 +8,11 @@
 
 namespace Tetsuwan\Contracts\Http;
 
+use swoole_http_request as SwooleHttpRequest;
 
 interface Request
 {
+    public function capture(SwooleHttpRequest $swRequest);
 
+    public function getUri();
 }

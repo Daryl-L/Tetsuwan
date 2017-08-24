@@ -9,8 +9,12 @@
 namespace Tetsuwan\Contracts\Routing;
 
 
+use Tetsuwan\Contracts\Http\Request;
+
 interface Route
 {
+    public function setRequest(Request $request);
+
     public function setAction($action);
 
     public function getAction();

@@ -53,7 +53,7 @@ class Router implements RouterContract
         return [$controller, $action];
     }
 
-    public function setNamespace($namespace)
+    public function setNamespace(string $namespace)
     {
         $this->namespace = $namespace;
     }

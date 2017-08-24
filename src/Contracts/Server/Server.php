@@ -11,5 +11,5 @@ namespace Tetsuwan\Contracts\Server;
 
 interface Server
 {
-
+    public function init();
 }

@@ -11,5 +11,9 @@ namespace Tetsuwan\Contracts\Routing;
 
 interface Router
 {
+    public function get(string $uri, $action);
 
+    public function setNamespace(string $namespace);
+
+    public function getRoute($method, $uri);
 }
