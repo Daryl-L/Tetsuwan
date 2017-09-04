@@ -8,8 +8,16 @@
 
 namespace Tetsuwan\Contracts\Http;
 
+use swoole_http_response as SwooleResponse;
+use Tetsuwan\Contracts\Routing\Route;
 
 interface Response
 {
+    public function setSwooleResponse(SwooleResponse $swResponse);
 
+    public function setContent(string $content);
+
+    public function setRoute(Route $route);
+
+    public function end();
 }

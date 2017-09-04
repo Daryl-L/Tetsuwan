@@ -25,6 +25,7 @@ class Application extends Container
     protected function initBind()
     {
         $this->bind(\Tetsuwan\Contracts\Routing\Route::class, \Tetsuwan\Routing\Route::class);
+        
     }
 
     protected function initSingleton()

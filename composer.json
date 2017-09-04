@@ -14,7 +14,10 @@
         "psr-4": {
             "Tetsuwan\\": "src",
             "App\\": "tests"
-        }
+        },
+        "files": [
+            "src/helpers/functions.php"
+        ]
     },
     "require": {}
 }

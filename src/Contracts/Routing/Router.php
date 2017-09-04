@@ -15,5 +15,10 @@ interface Router
 
     public function setNamespace(string $namespace);
 
+    /**
+     * @param $method
+     * @param $uri
+     * @return Route
+     */
     public function getRoute($method, $uri);
 }

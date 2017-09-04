@@ -8,3 +8,4 @@ class TestCase extends \Tetsuwan\Database\Model
 }
 
 new TestCase();
+var_dump(app('sss'));

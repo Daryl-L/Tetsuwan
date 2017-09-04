@@ -20,6 +20,7 @@ class Kernel implements KernelContract
 {
     protected $app;
 
+    /** @var Response  */
     protected $response;
 
     protected $request;
@@ -38,7 +39,8 @@ class Kernel implements KernelContract
 
         $uri = rtrim($uri, '/');
 
-        $router = $this->app[Router::class];
+        /** @var Router $router */
+        $router = app(Router::class);
 
         $route = $router->getRoute('get', $uri);
 

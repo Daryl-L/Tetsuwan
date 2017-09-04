@@ -30,4 +30,14 @@ class Model implements ModelContract
             $this->table = strtolower(implode('_', $string[0])) . 's';
         }
     }
+
+    public function __call($method, $args)
+    {
+
+    }
+
+    public static function __callStatic($method, $args)
+    {
+        $instance = new static();
+    }
 }
