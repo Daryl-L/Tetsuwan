@@ -11,5 +11,7 @@ namespace Tetsuwan\Contracts\Database;
 
 interface Builder
 {
+    public function getModel();
 
+    public function setModel(Model $model);
 }

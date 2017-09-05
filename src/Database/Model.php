@@ -31,6 +31,11 @@ class Model implements ModelContract
         }
     }
 
+    public function getTable()
+    {
+        return $this->table;
+    }
+
     public function __call($method, $args)
     {
 

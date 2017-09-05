@@ -11,5 +11,5 @@ namespace Tetsuwan\Contracts\Database;
 
 interface Model
 {
-
+    public function getTable();
 }
