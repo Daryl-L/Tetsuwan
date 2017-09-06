@@ -9,3 +9,12 @@ if (!function_exists('app')) {
         return $app[$abstract];
     }
 }
+
+if (!function_exists('config')) {
+    function config($item)
+    {
+        global $app;
+        $config = app('config');
+        return $config->getConfigItem($item);
+    }
+}
